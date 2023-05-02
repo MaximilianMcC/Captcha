@@ -39,7 +39,15 @@ html {
         background-color: $accent;
         font-size: 16px;
 
-        h1 {font-size: 30px;}
+        input {
+            color: inherit;
+            font-family: inherit;
+            font-size: 30px;
+            font-weight: bold;
+            background-color: transparent;
+            border: none;
+            outline: none;
+        }
     }
 
     // Middle section
