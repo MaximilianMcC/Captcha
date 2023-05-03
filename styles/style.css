@@ -57,6 +57,7 @@ html body {
   background-color: #f3efef;
   width: 100%;
   height: 100%;
+  pointer-events: none;
 }
 .captcha .image-grid .images .image .tick {
   transform: scale(0.9);
@@ -106,8 +107,13 @@ html body {
   display: flex;
   align-items: center;
 }
-.captcha .bottom .left span {
+.captcha .bottom .left button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
   margin-left: 10px;
+}
+.captcha .bottom .left button span {
   font-size: 30px;
 }
 .captcha .bottom .right {
@@ -129,9 +135,15 @@ html body {
 
 .material-symbols-outlined {
   font-variation-settings: "FILL" 0, "wght" 700, "GRAD" 200, "opsz" 48;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 
 .material-symbols-outlined.headphones {
   font-variation-settings: "FILL" 1, "wght" 700, "GRAD" 200, "opsz" 48;
   color: #2d2d2d;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }/*# sourceMappingURL=style.css.map */

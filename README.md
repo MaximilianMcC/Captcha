@@ -8,3 +8,4 @@ You can open the website using [this](https://maximilianmcc.github.io/Captcha/) 
 
 - To change the title, click on it and edit it.
 - To add an image, have one in your clipboard, then paste it using `ctrl+v`.
+- To change the correct images, select them then press the refresh button in the bottom left of the captcha
