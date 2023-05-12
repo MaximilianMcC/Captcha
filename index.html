@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap" rel="stylesheet">
     <script src="./script.js" defer></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 </head>
 <body>
     
@@ -28,6 +29,7 @@
             <div class="top">
                 <p>Select all images with</p>
                 <input type="text" value="Allegro 5 test project">
+                <h1 style="display: none;">Allegro 5 test project</h1>
                 <p>Click verify once there are none left.</p>
             </div>
 
@@ -81,8 +83,8 @@
                     </div>
                 </div>
 
-                <!-- Error message -->
-                <p>Please try again.</p>
+                <!-- Status message -->
+                <p id="status">Please try again.</p>
 
             </div>
 
@@ -90,7 +92,7 @@
             <div class="bottom">
                 <div class="left">
                     <button id="createPatternButton"><span class="material-symbols-outlined">refresh</span></button>
-                    <button><span class="material-symbols-outlined headphones">headphones</span></button>
+                    <button id="downloadCaptchaButton"><span class="material-symbols-outlined headphones">headphones</span></button>
                     <button><span class="material-symbols-outlined">info</span></button>
                 </div>
 

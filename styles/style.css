@@ -87,14 +87,18 @@ html body {
 }
 .captcha .image-grid p {
   display: none;
+  font-size: 15px;
+  font-weight: 500;
+  text-align: center;
+  padding: 5px 0px 10px 0px;
 }
 .captcha .image-grid p.error {
   display: block;
-  font-size: 15px;
-  font-weight: 500;
   color: red;
-  text-align: center;
-  padding: 5px 0px 10px 0px;
+}
+.captcha .image-grid p.correct {
+  display: block;
+  color: #7dac38;
 }
 .captcha .bottom {
   color: #767676;

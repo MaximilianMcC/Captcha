@@ -103,14 +103,19 @@ html {
         // Error message
         p {
             display: none;
+            font-size: 15px;
+            font-weight: 500;
+            text-align: center;
+            padding: 5px 0px 10px 0px;
 
             &.error {
                 display: block;
-                font-size: 15px;
-                font-weight: 500;
                 color: red;
-                text-align: center;
-                padding: 5px 0px 10px 0px;
+            }
+
+            &.correct {
+                display: block;
+                color: #7dac38;
             }
         }
     }

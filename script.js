@@ -61,23 +61,19 @@ document.querySelector("#captchaVerify").addEventListener("click", () => {
 
 	// Check for if they got all tiles correct
 	if (JSON.stringify(indexes) === JSON.stringify(correctIndexes)) {
+		resetTiles();
 
-		// Hide the captcha
-		//TODO: Actually do something
-		document.querySelector(".captcha").style.display = "none";
+		// Add an error message if there isn't one there already
+		if (!document.querySelector(".image-grid p#correct").classList.contains("correct")) {
+			document.querySelector(".image-grid p#correct").classList.add("correct");
+			document.querySelector(".image-grid p#incorrect").classList.remove("error");
+		}
 	}
 	else {
+		resetTiles();
 
-		// Rest all of the images
-		document.querySelectorAll(".images .image").forEach(image => {
-			image.classList.remove("selected");
-			image.querySelector(".tick").classList.add("hidden");
-		});
-		
 		// Add an error message if there isn't one there already
-		if (!document.querySelector(".image-grid p").classList.contains("error")) {
-			document.querySelector(".image-grid p").classList.add("error");
-		}
+		const errorMessage = "Please try again.";
 	}
 });
 
@@ -97,7 +93,6 @@ function addEventListeners() {
 		});
 	});
 }
-
 
 
 
@@ -141,12 +136,51 @@ document.querySelector("#createPatternButton").addEventListener("click", () => {
 	document.querySelectorAll(".images .image").forEach(image => {
 		if (image.classList.contains("selected")) {
 			
-			// Update the indexes when
+			// Update the correct indexes list
 			correctIndexes.push(index);
-			console.log(document.querySelectorAll(".images .image")[index]);
 		};
 
 		index++;
 	});
-	console.log(correctIndexes);
+	resetTiles();
+});
+
+
+// Reset all of the images selection
+function resetTiles() {
+	
+	document.querySelectorAll(".images .image").forEach(image => {
+		image.classList.remove("selected");
+		image.querySelector(".tick").classList.add("hidden");
+	});
+}
+
+
+document.querySelector("#downloadCaptchaButton").addEventListener("click", () => {
+	
+	// Replace the input with a h1 because the input cant be captured
+	const title = document.querySelector(".top input");
+	const heading = document.querySelector(".top h1");
+	title.style.display = "none";
+	heading.style.display = "block";
+	heading.innerHTML = title.value;
+
+	// Get the HTML as a canvas
+	html2canvas(document.querySelector(".captcha")).then(canvas => {
+		
+		canvas.toBlob(blob => {
+
+			const image = new ClipboardItem({
+				"image/png": blob
+			});
+			navigator.clipboard.write([image]);
+		});
+
+		//TODO: Make a proper alert
+		alert("Image copied to clipboard.");
+	});
+	
+	// Put the input back
+	title.style.display = "block";
+	heading.style.display = "none";
 });
