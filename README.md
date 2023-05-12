@@ -10,3 +10,5 @@ You can open the website using [this](https://maximilianmcc.github.io/Captcha/) 
 - To add an image, have one in your clipboard, then paste it using `ctrl+v`.
 - To change the correct images, select them then press the refresh button in the bottom left of the captcha
 - To copy the captcha to clipboard, press the headphones icon.
+
+There are more detailed instructions at the bottom of the website.

@@ -11,6 +11,7 @@ html body {
   height: 100%;
   background-color: #181a1c;
   color: white;
+  font-family: "Open Sans", "Segoe UI", sans-serif;
 }
 
 .middle {
@@ -24,7 +25,6 @@ html body {
   background-color: white;
   width: 450px;
   border-radius: 3px;
-  font-family: "Open Sans", "Segoe UI", sans-serif;
   box-shadow: 4px 9px 31px -3px rgba(0, 0, 0, 0.75);
 }
 .captcha .top {
@@ -135,6 +135,13 @@ html body {
 }
 .captcha .bottom .right button:hover {
   background-color: #185abc;
+}
+
+.instructions {
+  margin: 30px 20%;
+}
+.instructions .instruction {
+  margin-bottom: 30px;
 }
 
 .material-symbols-outlined {

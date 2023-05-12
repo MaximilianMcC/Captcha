@@ -91,9 +91,9 @@
             <!-- Bottom buttons and such -->
             <div class="bottom">
                 <div class="left">
-                    <button id="createPatternButton"><span class="material-symbols-outlined">refresh</span></button>
-                    <button id="downloadCaptchaButton"><span class="material-symbols-outlined headphones">headphones</span></button>
-                    <button><span class="material-symbols-outlined">info</span></button>
+                    <button id="createPatternButton" title="Save pattern as correct"><span class="material-symbols-outlined">refresh</span></button>
+                    <button id="downloadCaptchaButton" title="Copy image to clipboard"><span class="material-symbols-outlined headphones">headphones</span></button>
+                    <button title="Help"><span class="material-symbols-outlined">info</span></button>
                 </div>
 
                 <div class="right">
@@ -101,7 +101,34 @@
                 </div>
             </div>
 
-        </section>
+        </section>    
+
+    </div>
+
+
+    <hr>
+    <div class="instructions">
+
+        <div class="instruction">
+            <h2>Change the title</h2>
+            <p>To change the captcha title, simply click on the name at the top and start typing.</p>
+        </div>
+
+        <div class="instruction">
+            <h2>Change the image</h2>
+            <p>To change the image, have one ready in your clipboard. Paste the image using <kbd>CTRL</kbd> + <kbd>V</kbd>.</p>
+        </div>
+
+        <div class="instruction">
+            <h2>Change the correct pattern</h2>
+            <p>If you'd like to change the correct pattern, select all of the tiles that you want to be correct. This is by default none. Once you have selected them all, press the <strong>Retry</strong> button in the bottom-left of the captcha to save the selection. Upon completing the captcha, it will disappear.</p>
+        </div>
+
+        <div class="instruction">
+            <h2>Save the image</h2>
+            <p>When finished, you can save the captcha to your clipboard. To do this, press the <strong>Headphones</strong> button in the bottom-left of the captcha. The image will be saved to your clipboard.</p>
+        </div>
+
     </div>
 
 
