@@ -1,10 +1,17 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-	//do scipad page 162!!!!
+	// Check for if parameters are given. If there are, go "api mode"
+	if (location.search !== "") {
+		console.log("api mode");
 
-	// Populate the captcha with the image split up
-	generateCaptcha("./image.png");
+		document.documentElement.innerHTML = "";
+		const image = generateFromURL();
 
+	} else {
+
+		// Populate the captcha with the image split up
+		generateCaptcha("./image.png");
+	}
 });
 
 
@@ -15,35 +22,45 @@ function generateCaptcha(imagePath) {
 
 function addImages(imagePath) {
 	
-	// Get the canvas
-	const canvas = document.getElementById("captchaCanvas");
-	const context = canvas.getContext("2d");
+	const imagePromise = new Promise((resolve) => {
 
-	// Load the image to be split up
-	const captchaImage = new Image();
-	captchaImage.onload = () => {
-
-		// Set the canvas to the size of one of the 3x3 tiles
-		const width = captchaImage.width;
-		const height = captchaImage.height;
-		canvas.width = width / 3;
-		canvas.height = height / 3;
-
-		// Loop through a 3x3 grid of the image
-		let index = 0;
-		for (let i = 0; i < 3; i++) {
-			for (let j = 0; j < 3; j++) {
-				
-				// Figure out the part of the image that needs to be drawn
-				context.drawImage(captchaImage, (j * width / 3), (i * height / 3), width / 3, height / 3, 0, 0, width / 3, height / 3);
-
-				// Add the image to the captcha DOM
-				document.querySelectorAll(".images img")[index].src = canvas.toDataURL();
-				index++;
+		// Get the canvas
+		const canvas = document.getElementById("captchaCanvas");
+		const context = canvas.getContext("2d");
+	
+		// Load the image to be split up
+		const captchaImage = new Image();
+		captchaImage.crossOrigin = "anonymous";
+		captchaImage.onload = () => {
+	
+			// Set the canvas to the size of one of the 3x3 tiles
+			const width = captchaImage.width;
+			const height = captchaImage.height;
+			canvas.width = width / 3;
+			canvas.height = height / 3;
+	
+			// Loop through a 3x3 grid of the image
+			let index = 0;
+			for (let i = 0; i < 3; i++) {
+				for (let j = 0; j < 3; j++) {
+					
+					// Figure out the part of the image that needs to be drawn
+					context.drawImage(captchaImage, (j * width / 3), (i * height / 3), width / 3, height / 3, 0, 0, width / 3, height / 3);
+	
+					// Add the image to the captcha DOM
+					document.querySelectorAll(".images img")[index].src = canvas.toDataURL();
+					index++;
+				}
 			}
-		}
-	};
-	captchaImage.src = imagePath;
+
+			resolve();
+		};
+
+		captchaImage.src = imagePath;
+	});
+
+	return imagePromise;
+
 }
 
 
@@ -177,10 +194,55 @@ document.querySelector("#downloadCaptchaButton").addEventListener("click", () =>
 		});
 
 		//TODO: Make a proper alert
-		alert("Image copied to clipboard.");
 	});
 	
 	// Put the input back
 	title.style.display = "block";
 	heading.style.display = "none";
 });
+
+
+
+
+
+function generateFromURL() {
+
+	let capture;
+
+	const queryString = window.location.search;
+	const urlParams = new URLSearchParams(queryString);
+	const title = urlParams.get("title");
+	const imageUrl = urlParams.get("img_url");
+
+	// Add the title to the captcha
+	document.querySelector(".top input").value = title;
+
+
+	// Add the image to the captcha
+	addImages(imageUrl).then(() => {
+
+
+		// Download the captcha
+		//TODO: Don't reuse this code
+		// Replace the input with a h1 because the input cant be captured
+		const HTMLtitle = document.querySelector(".top input");
+		const heading = document.querySelector(".top h1");
+		HTMLtitle.style.display = "none";
+		heading.style.display = "block";
+		heading.innerHTML = HTMLtitle.value;
+	
+		// Get the HTML as a canvas
+		html2canvas(document.querySelector(".captcha")).then(canvas => {
+			
+			// Get the canvas as base64
+			let capture = canvas.toDataURL();
+		});
+		
+		// Put the input back
+		HTMLtitle.style.display = "block";
+		heading.style.display = "none";
+	});
+
+	// Give back the base64 of the image
+	return capture;
+}
