@@ -139,6 +139,7 @@ html body {
 
 .instructions {
   margin: 30px 20%;
+  padding-bottom: 10px;
 }
 .instructions .instruction {
   margin-bottom: 30px;
